@@ -1,3 +1,7 @@
+###############################
+# アプリのアンインストール
+###############################
+
 # 3Dビューアー
 Get-AppxPackage Microsoft.Microsoft3DViewer | Remove-AppxPackage
 
