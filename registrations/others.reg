@@ -26,14 +26,6 @@ Windows Registry Editor Version 5.00
 [-HKEY_CLASSES_ROOT\SystemFileAssociations\.wdp\Shell\setdesktopwallpaper]
 
 ; *****************************
-; ユーザーアカウント制御（UAC）
-; *****************************
-
-; [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]
-; UAC を無効にする
-; "EnableLUA"=dword:00000000
-
-; *****************************
 ; Microsoft Store
 ; *****************************
 

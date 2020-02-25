@@ -105,9 +105,13 @@ Windows Registry Editor Version 5.00
 "EnableTransparency"=dword:00000000
 
 [HKEY_CURRENT_USER\Control Panel\Desktop]
-; Windows にアニメーションを表示する & デスクトップの背景画像を表示する -> オフ
+; Windows にアニメーションを表示する
+; デスクトップの背景画像を表示する -> オフ
+; Windows 内のアニメーション コントロールと要素 -> 無効
+; コンボ ボックスをスライドして開く -> 無効
+; ヒントをフェードまたはスライドで表示する -> 無効
 ; "UserPreferencesMask"=hex:9e,1e,07,80,12,00,00,00 # 初期値
-"UserPreferencesMask"=hex:90,12,07,80,11,00,00,00
+"UserPreferencesMask"=hex:98,12,07,80,11,00,00,00
 
 ; ナレーター
 
