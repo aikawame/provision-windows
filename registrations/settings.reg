@@ -61,6 +61,18 @@ Windows Registry Editor Version 5.00
 "AllowWindowsInkWorkspace"=dword:00000000
 
 ; *****************************
+; 個人用設定
+; *****************************
+
+; タスク バー
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+; Cortana のボタンを表示する -> 無効
+"ShowCortanaButton"=dword:00000000
+; タスクビュー ボタンを表示 -> 無効
+"ShowTaskViewButton"=dword:00000000
+
+; *****************************
 ; アプリ
 ; *****************************
 
