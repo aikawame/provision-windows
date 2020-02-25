@@ -2,6 +2,8 @@
 # アプリのアンインストール
 ###############################
 
+# TODO: なぜか消えてくれないパッケージが幾つかあるので調べる
+
 # 3Dビューアー
 Get-AppxPackage Microsoft.Microsoft3DViewer | Remove-AppxPackage
 
