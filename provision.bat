@@ -1,5 +1,7 @@
-powershell -ExecutionPolicy RemoteSigned .\scripts\set_appx_packages.ps1
-powershell -ExecutionPolicy RemoteSigned .\scripts\set_optional_features.ps1
+powershell Set-ExecutionPolicy RemoteSigned -Force
+powershell .\scripts\remove_appx_packages.ps1
+powershell .\scripts\disable_windows_optional_features.ps1
+powershell .\scripts\enable_windows_optional_features.ps1
 
 reg import .\registrations\settings.reg
 reg import .\registrations\control_panel.reg
