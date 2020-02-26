@@ -1,5 +1,5 @@
 $packages = @(
-'Microsoft-Windows-Subsystem-Linux'  # Windows Subsystem for Linux
+'Microsoft-Windows-Subsystem-Linux'
 )
 
 $packages | % { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName $_ }
