@@ -11,6 +11,7 @@ $packages = @(
 'line',
 'openvpn',
 'postman',
+'registrychangesview',
 'slack',
 'winmerge-jp'
 )
