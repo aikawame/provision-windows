@@ -69,16 +69,6 @@ Windows Registry Editor Version 5.00
 "fAllowToGetHelp"=dword:00000000
 
 ; *****************************
-; セキュリティとメンテナンス
-; *****************************
-
-; ユーザー アカウント制御設定の変更
-
-; [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]
-; 通知しない
-; "EnableLUA"=dword:00000000
-
-; *****************************
 ; トラブルシューティング
 ; *****************************
 
