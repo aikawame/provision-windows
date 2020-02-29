@@ -1,4 +1,5 @@
 $packages = @(
+'Microsoft-Hyper-V-All',
 'Microsoft-Windows-Subsystem-Linux'
 )
 
