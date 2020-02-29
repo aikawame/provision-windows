@@ -34,4 +34,4 @@ $packages = @(
 )
 
 # TODO: Check some packages are not removed
-$packages | % { Get-AppxPackage $_ | Add-AppxPackage  }
+$packages | % { Get-AppxPackage $_ | Remove-AppxPackage  }
