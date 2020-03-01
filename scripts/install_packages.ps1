@@ -20,3 +20,5 @@ $packages = @(
 )
 
 $packages.GetEnumerator() | % { Install-Package $_ -Force -ProviderName 'ChocolateyGet' }
+
+wsl --set-version Ubuntu-18.04 2
