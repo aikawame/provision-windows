@@ -1,0 +1,6 @@
+- name: hostsのデータを追加する
+  blockinfile:
+    path: /etc/hosts
+    block: |
+      127.0.0.1 local-up.gifmagazine.net
+      127.0.0.1 local-converter.gifmagazine.net
