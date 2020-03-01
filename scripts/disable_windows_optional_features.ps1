@@ -1,5 +1,4 @@
 $packages = @(
-'FaxServicesClientPackage',
 'Internet-Explorer-Optional-amd64',
 'MediaPlayback',
 'Printing-XPSServices-Features',
