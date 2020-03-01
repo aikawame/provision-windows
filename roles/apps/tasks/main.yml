@@ -1,20 +1,19 @@
-- name: aptのリポジトリー情報を更新する
+- name: Update apt repositories
   apt:
     update_cache: yes
 
-- name: aptのパッケージを更新する
+- name: Update apt packages
   apt:
     upgrade: yes
 
-- name: aptのパッケージをインストールする
+- name: Install apt packages
   apt:
     pkg:
       - awscli
       - peco
       - zsh
 
-- name: anyenvをインストールする
+- name: Install anyenv
   git:
     repo: https://github.com/riywo/anyenv.git
     dest: ~/.anyenv
-

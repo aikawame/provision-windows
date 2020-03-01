@@ -1,4 +1,4 @@
-- name: hostsのデータを追加する
+- name: Add hosts
   blockinfile:
     path: /etc/hosts
     block: |
