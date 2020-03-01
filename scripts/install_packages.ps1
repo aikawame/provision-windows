@@ -9,11 +9,13 @@ $packages = @(
 'keypirinha',
 'Kindle',
 'line',
+'microsoft-windows-terminal',
 'openvpn',
 'postman',
 'registrychangesview',
 'rufus',
 'slack',
+'wsl-ubuntu-1804',
 'winmerge-jp'
 )
 
