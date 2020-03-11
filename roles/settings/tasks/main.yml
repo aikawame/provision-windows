@@ -50,3 +50,9 @@
     src: roles/settings/templates/id_rsa.pub.j2
     dest: ~/.ssh/id_rsa.pub
     mode: 0600
+
+- name: Clone Git repositories
+  git:
+    repo: "{{ item }}"
+    dest: "~/src/{{ item | regex_replace('^.*/(.*)$', '\\1') }}"
+  loop: "{{ git_repositories }}"
