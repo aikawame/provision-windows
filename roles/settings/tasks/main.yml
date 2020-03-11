@@ -4,3 +4,49 @@
     block: |
       127.0.0.1 local-up.gifmagazine.net
       127.0.0.1 local-converter.gifmagazine.net
+
+- name: Create sources directory
+  file:
+    path: ~/src
+    state: directory
+
+- name: Clone dotfiles
+  git:
+    repo: https://github.com/aikawame/dotfiles.git
+    dest: ~/src/dotfiles
+
+- name: Install dotfiles
+  shell: ~/src/dotfiles/install
+
+- name: Copy AWS config
+  copy:
+    src: roles/settings/files/aws_config
+    dest: ~/.aws/config
+
+- name: Copy AWS credentials
+  template:
+    src: roles/settings/templates/aws_credentials.j2
+    dest: ~/.aws/credentials
+
+- name: Copy SSH Config
+  template:
+    src: roles/settings/templates/ssh_config.j2
+    dest: ~/.ssh/config
+
+- name: Copy RSA private key
+  template:
+    src: roles/settings/templates/id_rsa.j2
+    dest: ~/.ssh/id_rsa
+    mode: 0600
+
+- name: Copy RSA private key (gm)
+  template:
+    src: roles/settings/templates/id_rsa.gm.j2
+    dest: ~/.ssh/id_rsa.gm
+    mode: 0600
+
+- name: Copy RSA public key
+  template:
+    src: roles/settings/templates/id_rsa.pub.j2
+    dest: ~/.ssh/id_rsa.pub
+    mode: 0600
