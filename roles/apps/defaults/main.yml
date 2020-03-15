@@ -1,0 +1,12 @@
+apt_packages:
+  - awscli
+  - emacs25
+  - peco
+  - zsh
+
+anyenv_envs:
+  - nodenv
+
+nodenv_versions:
+  - 10.15.3
+  - 12.13.0

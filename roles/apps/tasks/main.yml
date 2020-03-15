@@ -8,13 +8,57 @@
 
 - name: Install apt packages
   apt:
-    pkg:
-      - awscli
-      - emacs25
-      - peco
-      - zsh
+    pkg: "{{ apt_packages }}"
 
 - name: Install anyenv
   git:
-    repo: https://github.com/riywo/anyenv.git
+    repo: https://github.com/anyenv/anyenv.git
     dest: ~/.anyenv
+
+- name: Check if anyenv manifest directory exists
+  stat:
+    path: ~/.config/anyenv/anyenv-install
+  register: anyenv_manifest_dir
+
+- name: Initialize anyenv
+  shell: ~/.anyenv/bin/anyenv install --force-init
+  when: anyenv_manifest_dir.stat.exists == false
+
+- name: Check if **env directory exists
+  stat:
+    path: "~/.anyenv/envs/{{ item }}"
+  register: "anyenv_env_dirs"
+  loop: "{{ anyenv_envs }}"
+
+- name: Install **env
+  shell: "~/.anyenv/bin/anyenv install {{ item }}"
+  when: "anyenv_env_dirs.results[loop_index].stat.exists == false"
+  loop: "{{ anyenv_envs }}"
+  loop_control:
+    index_var: loop_index
+
+- name: Copy bash profile
+  copy:
+    src: roles/apps/files/.bash_profile
+    dest: ~/.bash_profile
+
+- name: Create nodenv default packages
+  shell: "bash -lc 'echo yarn >> $NODENV_ROOT/default-packages'"
+
+- name: Check if nodenv versions exists
+  stat:
+    path: "~/.anyenv/envs/nodenv/versions/{{ item }}"
+  register: "nodenv_version_dirs"
+  loop: "{{ nodenv_versions }}"
+
+- name: Add nodenv versions
+  shell: "bash -lc '~/.anyenv/envs/nodenv/bin/nodenv install {{ item }}'"
+  when: "nodenv_version_dirs.results[loop_index].stat.exists == false"
+  loop: "{{ nodenv_versions }}"
+  loop_control:
+    index_var: loop_index
+
+- name: Remove bash profile
+  file:
+    path: ~/.bash_profile
+    state: absent
