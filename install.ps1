@@ -17,7 +17,7 @@ Reg import .\registrations\sounds.reg
 Reg import .\registrations\others.reg
 
 wsl DEBIAN_FRONTEND=noninteractive apt install -y ansible
-wsl ansible-playbook -i local local.yml
+wsl ansible-playbook -i local local.yml --ask-vault-pass
 
 Set-Location -Path C:\Windows\Temp
 Remove-Item .\provision-windows-master.zip
