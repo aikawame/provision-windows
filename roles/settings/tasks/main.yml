@@ -21,7 +21,9 @@
     dest: ~/src/dotfiles
 
 - name: Install dotfiles
-  shell: ~/src/dotfiles/install
+  shell: install
+  args:
+    chdir: ~/src/dotfiles
 
 - name: Copy AWS config
   copy:
