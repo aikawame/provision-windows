@@ -5,4 +5,9 @@ $providers = @(
 'Chocolatey'
 )
 
-$providers | % { Install-PackageProvider $_ -Force }
+Write-Host 'Installing package providers:'
+$providers | % {
+  Write-Host "-> $_"
+  Install-PackageProvider $_ -Force
+}
+Write-Host ''

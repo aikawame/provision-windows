@@ -12,4 +12,9 @@ $packages = @(
 'WorkFolders-Client'
 )
 
-$packages | % { Disable-WindowsOptionalFeature -NoRestart -Online -FeatureName $_ }
+Write-Host 'Disabling Windows optional features:'
+$packages | % {
+  Write-Host "-> $_"
+  Disable-WindowsOptionalFeature -NoRestart -Online -FeatureName $_
+}
+Write-Host ''

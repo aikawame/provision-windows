@@ -4,4 +4,9 @@ $packages = @(
 'VirtualMachinePlatform'
 )
 
-$packages | % { Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName $_ }
+Write-Host 'Enabling Windows optional features:'
+$packages | % {
+  Write-Host "-> $_"
+  Enable-WindowsOptionalFeature -NoRestart -Online -FeatureName $_
+}
+Write-Host ''

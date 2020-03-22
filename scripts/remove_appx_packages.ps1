@@ -33,5 +33,9 @@ $packages = @(
 'Microsoft.ZuneVideo'
 )
 
-# TODO: Check some packages are not removed
-$packages | % { Get-AppxPackage $_ | Remove-AppxPackage  }
+Write-Host 'Removing UWP applications:'
+$packages | % {
+  Write-Host "-> $_"
+  Get-AppxPackage $_ | Remove-AppxPackage
+}
+Write-Host ''
