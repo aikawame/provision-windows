@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
+  <servicing>
+    <package action="configure">
+      <assemblyIdentity name="Microsoft-Windows-Foundation-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+      <selection name="Internet-Explorer-Optional-amd64" state="false" />
+      <selection name="MediaPlayback" state="false" />
+      <selection name="Microsoft-Hyper-V-All" state="true" />
+      <selection name="Microsoft-Windows-Subsystem-Linux" state="true" />
+      <selection name="MicrosoftWindowsPowerShellV2Root" state="false" />
+      <selection name="NetFx4-AdvSrvs" state="false" />
+      <selection name="Printing-Foundation-Features" state="false" />
+      <selection name="Printing-XPSServices-Features" state="false" />
+      <selection name="SMB1Protocol" state="false" />
+      <selection name="SMB1Protocol-Client" state="false" />
+      <selection name="SMB1Protocol-Deprecation" state="false" />
+      <selection name="VirtualMachinePlatform" state="true" />
+      <selection name="WindowsMediaPlayer" state="false" />
+      <selection name="WorkFolders-Client" state="false" />
+    </package>
+  </servicing>
   <settings pass="windowsPE">
     <component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <SetupUILanguage>
