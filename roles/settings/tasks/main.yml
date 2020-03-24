@@ -21,7 +21,7 @@
     dest: ~/src/dotfiles
 
 - name: Install dotfiles
-  shell: install
+  shell: ./install
   args:
     chdir: ~/src/dotfiles
 
