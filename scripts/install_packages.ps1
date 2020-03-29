@@ -1,7 +1,6 @@
 $packages = @(
 '7zip.install',
 'docker-desktop',
-'fonts-ricty-diminished',
 'github-desktop',
 'GoogleChrome',
 'intellijidea-ultimate',
@@ -10,6 +9,7 @@ $packages = @(
 'Kindle',
 'line',
 'microsoft-windows-terminal',
+'myrica',
 'openvpn',
 'postman',
 'registrychangesview',
