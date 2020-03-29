@@ -2,7 +2,8 @@ Set-ExecutionPolicy RemoteSigned -Force
 $ErrorActionPreference = 'Stop'
 
 Set-Location -Path C:\Windows\Temp
-Invoke-WebRequest -Uri https://github.com/aikawame/provision-windows/archive/master.zip -OutFile provision-windows-master.zip -UseBasicParsing
+$client = New-Object net.webclient
+$client.DownloadFile('https://github.com/aikawame/provision-windows/archive/master.zip', 'provision-windows-master.zip')
 Expand-Archive -Path .\provision-windows-master.zip -DestinationPath .\ -Force
 Set-Location -Path .\provision-windows-master
 

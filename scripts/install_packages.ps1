@@ -48,7 +48,8 @@ function Install-AtokPassport() {
 
 function Install-TablePlus() {
   Write-Host '-> TablePlus'
-  Invoke-WebRequest -Uri https://tableplus.com/release/windows/tableplus_latest -OutFile TablePlusSetup.exe -UseBasicParsing
+  $client = New-Object net.webclient
+  $client.DownloadFile('https://tableplus.com/release/windows/tableplus_latest', 'TablePlusSetup.exe')
   .\TablePlusSetup.exe /SILENT
   Remove-Item .\TablePlusSetup.exe
 }
