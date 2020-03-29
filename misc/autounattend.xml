@@ -3,6 +3,7 @@
   <servicing>
     <package action="configure">
       <assemblyIdentity name="Microsoft-Windows-Foundation-Package" version="10.0.19041.1" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="" />
+      <selection name="Containers-DisposableClientVM" state="true" />
       <selection name="Internet-Explorer-Optional-amd64" state="false" />
       <selection name="MediaPlayback" state="false" />
       <selection name="Microsoft-Hyper-V-All" state="true" />
