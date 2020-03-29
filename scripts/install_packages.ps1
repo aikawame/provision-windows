@@ -31,11 +31,19 @@ function Install-Package-Retryable($package, $errorCount = 0) {
   }
 }
 
+function Install-TablePlus() {
+  Write-Host '-> TablePlus'
+  Invoke-WebRequest -Uri https://tableplus.com/release/windows/tableplus_latest -OutFile TablePlusSetup.exe -UseBasicParsing
+  .\TablePlusSetup.exe /SILENT
+  Remove-Item .\TablePlusSetup.exe
+}
+
 Write-Host 'Installing packages:'
 $packages | % {
   Write-Host "-> $_"
   Install-Package-Retryable $_
 }
+Install-TablePlus
 Write-Host ''
 
 Write-Host 'Converting Ubuntu to WSL2...'
