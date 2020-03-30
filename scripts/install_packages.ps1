@@ -9,7 +9,6 @@ $packages = @(
 'Kindle',
 'line',
 'microsoft-windows-terminal',
-'myrica',
 'openvpn',
 'postman',
 'registrychangesview',
@@ -46,6 +45,17 @@ function Install-AtokPassport() {
   # Remove-Item .\at31try4 -Force -Recurse
 }
 
+function Install-HackGen() {
+  Write-Host '-> HackGen'
+  $client = New-Object net.webclient
+  # TODO: バージョンを可変にする
+  $client.DownloadFile('https://github.com/yuru7/HackGen/releases/download/v1.4.1/HackGen_v1.4.1.zip', 'HackGen_v1.4.1.zip')
+  Expand-Archive -Path .\HackGen_v1.4.1.zip -DestinationPath .
+  Copy-Item .\HackGen_v1.4.1\HackGen-Regular.ttf C:\Windows\Fonts
+  Remove-Item .\HackGen_v1.4.1.zip
+  Remove-Item .\HackGen_v1.4.1 -Force -Recurse
+}
+
 function Install-TablePlus() {
   Write-Host '-> TablePlus'
   $client = New-Object net.webclient
@@ -60,6 +70,7 @@ $packages | % {
   Install-Package-Retryable $_
 }
 Install-AtokPassport
+Install-HackGen
 Install-TablePlus
 Write-Host ''
 
