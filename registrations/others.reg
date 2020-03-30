@@ -8,6 +8,10 @@ Windows Registry Editor Version 5.00
 ; コントロール パネルにすべての項目を表示する
 "StartupPage"=dword:00000001
 
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag]
+; 3D オブジェクトを隠す
+"ThisPCPolicy"="Hide"
+
 ; *****************************
 ; デスクトップ
 ; *****************************
