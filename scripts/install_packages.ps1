@@ -9,7 +9,6 @@ $packages = @(
 'Kindle',
 'line',
 'microsoft-windows-terminal',
-'openvpn',
 'postman',
 'registrychangesview',
 'rufus',
