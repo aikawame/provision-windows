@@ -32,35 +32,35 @@ function Install-Package-Retryable($package, $errorCount = 0) {
 function Install-AtokPassport() {
   Write-Host '-> AtokPassport'
   $client = New-Object net.webclient
-  $client.DownloadFile('https://sevenzip.osdn.jp/howto/9.20/7z.exe', '7z.exe')
-  $client.DownloadFile('https://sevenzip.osdn.jp/howto/9.20/7z.dll', '7z.dll')
-  $client.DownloadFile('https://gate.justsystems.com/download/atok/ut/win/at31try4.exe', 'at31try4.exe')
-  .\7z x at31try4.exe
-  .\at31try4\ATOK\SETUP.EXE /s
-  Remove-Item .\7z.exe
-  Remove-Item .\7z.dll
-  Remove-Item .\at31try4.exe
+  $client.DownloadFile('https://sevenzip.osdn.jp/howto/9.20/7z.exe', "$env:temp\7z.exe")
+  $client.DownloadFile('https://sevenzip.osdn.jp/howto/9.20/7z.dll', "$env:temp\7z.dll")
+  $client.DownloadFile('https://gate.justsystems.com/download/atok/ut/win/at31try4.exe', "$env:temp\at31try4.exe")
+  Invoke-Expression "$env:temp\7z x $env:temp\at31try4.exe -o$env:temp"
+  Invoke-Expression "$env:temp\at31try4\ATOK\SETUP.EXE /s"
+  Remove-Item $env:temp\7z.exe
+  Remove-Item $env:temp\7z.dll
+  Remove-Item $env:temp\at31try4.exe
   # TODO: ウェイトを入れてtry-catchを咬ませつつ消す
-  # Remove-Item .\at31try4 -Force -Recurse
+  # Remove-Item $env:temp\at31try4 -Force -Recurse
 }
 
 function Install-HackGen() {
   Write-Host '-> HackGen'
   $client = New-Object net.webclient
   # TODO: バージョンを可変にする
-  $client.DownloadFile('https://github.com/yuru7/HackGen/releases/download/v1.4.1/HackGen_v1.4.1.zip', 'HackGen_v1.4.1.zip')
-  Expand-Archive -Path .\HackGen_v1.4.1.zip -DestinationPath .
-  Copy-Item .\HackGen_v1.4.1\HackGen-Regular.ttf C:\Windows\Fonts
-  Remove-Item .\HackGen_v1.4.1.zip
-  Remove-Item .\HackGen_v1.4.1 -Force -Recurse
+  $client.DownloadFile('https://github.com/yuru7/HackGen/releases/download/v2.1.1/HackGen_v2.1.1.zip', "$env:temp\HackGen_v2.1.1.zip")
+  Expand-Archive -Path $env:temp\HackGen_v2.1.1.zip -DestinationPath $env:temp
+  Copy-Item $env:temp\HackGen_v2.1.1\HackGen-Regular.ttf C:\Windows\Fonts
+  Remove-Item $env:temp\HackGen_v2.1.1.zip
+  Remove-Item $env:temp\HackGen_v2.1.1 -Force -Recurse
 }
 
 function Install-TablePlus() {
   Write-Host '-> TablePlus'
   $client = New-Object net.webclient
-  $client.DownloadFile('https://tableplus.com/release/windows/tableplus_latest', 'TablePlusSetup.exe')
-  .\TablePlusSetup.exe /SILENT
-  Remove-Item .\TablePlusSetup.exe
+  $client.DownloadFile('https://tableplus.com/release/windows/tableplus_latest', "$env:temp\TablePlusSetup.exe")
+  Invoke-Expression "$env:temp\TablePlusSetup.exe /SILENT"
+  # Remove-Item $env:temp\TablePlusSetup.exe
 }
 
 Write-Host 'Installing packages:'

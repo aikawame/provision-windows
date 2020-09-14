@@ -1,9 +1,9 @@
 Set-ExecutionPolicy RemoteSigned -Force
 $ErrorActionPreference = 'Stop'
 
-Set-Location -Path C:\Windows\Temp
+Set-Location -Path $env:temp
 $client = New-Object net.webclient
-$client.DownloadFile('https://github.com/aikawame/provision-windows/archive/master.zip', 'provision-windows-master.zip')
+$client.DownloadFile('https://github.com/aikawame/provision-windows/archive/master.zip', "$env:temp\provision-windows-master.zip")
 Expand-Archive -Path .\provision-windows-master.zip -DestinationPath .\ -Force
 Set-Location -Path .\provision-windows-master
 
@@ -20,6 +20,6 @@ wsl DEBIAN_FRONTEND=noninteractive apt update
 wsl DEBIAN_FRONTEND=noninteractive apt install -y ansible
 wsl ansible-playbook -i local local.yml --ask-vault-pass
 
-Set-Location -Path C:\Windows\Temp
+Set-Location -Path $env:temp
 Remove-Item .\provision-windows-master.zip
 Remove-Item .\provision-windows-master -Recurse
