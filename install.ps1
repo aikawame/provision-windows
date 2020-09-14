@@ -20,6 +20,6 @@ wsl DEBIAN_FRONTEND=noninteractive apt update
 wsl DEBIAN_FRONTEND=noninteractive apt install -y ansible
 wsl ansible-playbook -i local local.yml --ask-vault-pass
 
-Set-Location -Path $env:temp
-Remove-Item .\provision-windows-master.zip
-Remove-Item .\provision-windows-master -Recurse
+# Set-Location -Path $env:temp
+# Remove-Item .\provision-windows-master.zip
+# Remove-Item .\provision-windows-master -Recurse
