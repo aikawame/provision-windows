@@ -29,6 +29,14 @@ function Install-Package-Retryable($package, $errorCount = 0) {
   }
 }
 
+function Install-WSL2-Kernel-Update() {
+  Write-Host '-> WSL2 Kernel Update'
+  $client = New-Object net.webclient
+  $client.DownloadFile('https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi', "$env:temp\wsl_update_x64.msi")
+  Invoke-Expression "msiexec /i $env:temp\wsl_update_x64.msi /passive /norestart"
+  wsl --set-default-version 2
+}
+
 function Install-AtokPassport() {
   Write-Host '-> AtokPassport'
   $client = New-Object net.webclient
@@ -64,6 +72,7 @@ function Install-TablePlus() {
 }
 
 Write-Host 'Installing packages:'
+Install-WSL2-Kernel-Update
 $packages | % {
   Write-Host "-> $_"
   Install-Package-Retryable $_
@@ -74,5 +83,4 @@ Install-TablePlus
 Write-Host ''
 
 Write-Host 'Converting Ubuntu to WSL2...'
-wsl --set-version Ubuntu-18.04 2
 Write-Host ''
