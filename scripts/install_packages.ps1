@@ -81,6 +81,3 @@ Install-AtokPassport
 Install-HackGen
 Install-TablePlus
 Write-Host ''
-
-Write-Host 'Converting Ubuntu to WSL2...'
-Write-Host ''
