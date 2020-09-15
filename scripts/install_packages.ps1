@@ -13,7 +13,7 @@ $packages = @(
 'registrychangesview',
 'rufus',
 'slack',
-'wsl-ubuntu-1804',
+'wsl-ubuntu-2004',
 'winmerge-jp'
 )
 
