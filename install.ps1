@@ -16,8 +16,8 @@ Reg import .\registrations\control_panel.reg
 Reg import .\registrations\sounds.reg
 Reg import .\registrations\others.reg
 
-wsl DEBIAN_FRONTEND=noninteractive apt update
-wsl DEBIAN_FRONTEND=noninteractive apt install -y ansible
+wsl DEBIAN_FRONTEND=noninteractive apt-get update
+wsl DEBIAN_FRONTEND=noninteractive apt-get install -y ansible
 wsl ansible-playbook -i local local.yml --ask-vault-pass
 
 # Set-Location -Path $env:temp
