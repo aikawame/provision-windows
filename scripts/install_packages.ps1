@@ -13,7 +13,6 @@ $packages = @(
 'registrychangesview',
 'rufus',
 'slack',
-'wsl-ubuntu-2004',
 'winmerge-jp'
 )
 
@@ -71,6 +70,12 @@ function Install-TablePlus() {
   # Remove-Item $env:temp\TablePlusSetup.exe
 }
 
+function Install-Ubuntu() {
+  Write-Host '-> Ubuntu'
+  choco install -y wsl-ubuntu-2004 --params /InstallRoot:true
+  wsl -s Ubuntu-20.04
+}
+
 Write-Host 'Installing packages:'
 Install-WSL2-Kernel-Update
 $packages | % {
@@ -80,4 +85,5 @@ $packages | % {
 Install-AtokPassport
 Install-HackGen
 Install-TablePlus
+Install-Ubuntu
 Write-Host ''
