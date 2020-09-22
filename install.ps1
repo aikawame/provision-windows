@@ -19,7 +19,10 @@ Reg import .\registrations\others.reg
 Write-Host ''
 Write-Host 'Provisioning WSL environment:'
 wsl DEBIAN_FRONTEND=noninteractive apt-get update
-wsl DEBIAN_FRONTEND=noninteractive apt-get install -y ansible
+wsl DEBIAN_FRONTEND=noninteractive apt-get install -y language-pack-ja ansible
+wsl update-locale LANG=ja_JP.UTF8
+wsl DEBIAN_FRONTEND=noninteractive dpkg-reconfigure tzdata
+
 wsl ansible-playbook -i local local.yml --ask-vault-pass
 Write-Host ''
 
