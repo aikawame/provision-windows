@@ -52,6 +52,15 @@ function Install-AtokPassport() {
   # Remove-Item $env:temp\at31try4 -Force -Recurse
 }
 
+function Install-MagicUtilities() {
+  Write-Host '-> Magic Utilities'
+  $client = New-Object net.webclient
+  $client.DownloadFile('https://magicutilities.net/downloads/MagicUtilities-Setup-3.0.9.6-Win10.exe', "$env:temp\MagicUtilities-Setup-3.0.9.6-Win10.exe")
+  # TODO: サイレントインストールにする（コンポーネントの指定が必要）
+  Invoke-Expression "$env:temp\MagicUtilities-Setup-3.0.9.6-Win10.exe"
+  # Remove-Item $env:temp\MagicUtilities-Setup-3.0.9.6-Win10.exe
+}
+
 function Install-TablePlus() {
   Write-Host '-> TablePlus'
   $client = New-Object net.webclient
@@ -73,6 +82,7 @@ $packages | % {
   Install-Package-Retryable $_
 }
 Install-AtokPassport
+Install-MagicUtilities()
 Install-TablePlus
 Install-Ubuntu
 Write-Host ''
