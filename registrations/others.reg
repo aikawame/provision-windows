@@ -4,6 +4,14 @@ Windows Registry Editor Version 5.00
 ; エクスプローラー
 ; *****************************
 
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+; エクスプローラーで開く -> PC
+"LaunchTo"=dword:00000001
+
+[HKEY_CLASSES_ROOT\CLSID\{679f85cb-0220-4080-b29b-5540cc05aab6}\ShellFolder]
+; クイックアクセスを隠す
+"Attributes"=dword:a0600000
+
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel]
 ; コントロール パネルにすべての項目を表示する
 "StartupPage"=dword:00000001
