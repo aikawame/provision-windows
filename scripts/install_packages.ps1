@@ -82,7 +82,7 @@ $packages | % {
   Install-Package-Retryable $_
 }
 Install-AtokPassport
-Install-MagicUtilities()
+Install-MagicUtilities
 Install-TablePlus
 Install-Ubuntu
 Write-Host ''
