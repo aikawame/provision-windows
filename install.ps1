@@ -10,6 +10,7 @@ Set-Location -Path .\provision-windows-master
 .\scripts\remove_appx_packages.ps1
 .\scripts\install_package_providers.ps1
 .\scripts\install_packages.ps1
+.\scripts\update_reg_acls.ps1
 
 Write-Host 'Applying registry:'
 Reg import .\registrations\settings.reg
