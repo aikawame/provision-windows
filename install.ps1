@@ -27,6 +27,10 @@ wsl DEBIAN_FRONTEND=noninteractive dpkg-reconfigure tzdata
 wsl ansible-playbook -i local local.yml --ask-vault-pass
 Write-Host ''
 
+Write-Host 'Increase max_map_count for Elasticsearch container:'
+wsl -d docker-desktop echo 262144 ^> /proc/sys/vm/max_map_count
+Write-Host ''
+
 # Set-Location -Path $env:temp
 # Remove-Item .\provision-windows-master.zip
 # Remove-Item .\provision-windows-master -Recurse
