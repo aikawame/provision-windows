@@ -1,5 +1,6 @@
 $regkeys = @(
-'CLSID\{679f85cb-0220-4080-b29b-5540cc05aab6}\ShellFolder'
+'CLSID\{679f85cb-0220-4080-b29b-5540cc05aab6}\ShellFolder',
+'CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}\ShellFolder'
 )
 
 function Enable-Privilege {
