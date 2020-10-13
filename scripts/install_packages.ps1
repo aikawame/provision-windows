@@ -1,6 +1,7 @@
 $packages = @(
 '7zip.install',
 'docker-desktop',
+'firefox',
 'font-hackgen',
 'github-desktop',
 'GoogleChrome',
