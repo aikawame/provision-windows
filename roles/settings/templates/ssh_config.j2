@@ -1,10 +1,1 @@
-{% for host, config in ssh_configs.items() %}
-Host {{ host }}
-  HostName {{ config.host_name }}
-  User {{ config.user }}
-  IdentityFile {{ config.identity_file }}
-  ServerAliveInterval {{ config.server_alive_interval }}
-{% endfor %}
-Host *
-    StrictHostKeyChecking no
-    UserKnownHostsFile /dev/null
+{{ ssh_configs }}
