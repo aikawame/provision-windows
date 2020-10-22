@@ -1,3 +1,22 @@
+- name: Setup GPG for Yarn
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+
+- name: Setup Debian sources list
+  file:
+    path: /etc/apt/sources.list.d/yarn.list
+    owner: root
+    mode: 0644
+    state: touch
+
+- name: Setup Debian package
+  lineinfile:
+    dest: /etc/apt/sources.list.d/yarn.list
+    regexp: 'deb http://dl.yarnpkg.com/debian/ stable main'
+    line: 'deb http://dl.yarnpkg.com/debian/ stable main'
+    state: present
+
 - name: Update apt repositories
   apt:
     update_cache: yes

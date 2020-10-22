@@ -2,6 +2,7 @@ apt_packages:
   - awscli
   - emacs
   - peco
+  - yarn
   - zsh
 
 anyenv_envs:
