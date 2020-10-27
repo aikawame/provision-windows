@@ -63,3 +63,8 @@
     repo: "{{ item }}"
     dest: "~/src/{{ item | regex_replace('^.*/(.*)$', '\\1') }}"
   loop: "{{ git_repositories }}"
+
+- name: Change SSH directory permission
+  file:
+    path: ~/src/dotfiles/.ssh
+    mode: 0700
