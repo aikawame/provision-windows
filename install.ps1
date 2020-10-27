@@ -18,6 +18,9 @@ Reg import .\registrations\control_panel.reg
 Reg import .\registrations\sounds.reg
 Reg import .\registrations\others.reg
 Write-Host ''
+Write-Host 'Applying other settings:'
+net accounts /maxpwage:unlimited
+Write-Host ''
 Write-Host 'Provisioning WSL environment:'
 wsl DEBIAN_FRONTEND=noninteractive apt-get update
 wsl DEBIAN_FRONTEND=noninteractive apt-get install -y language-pack-ja ansible
