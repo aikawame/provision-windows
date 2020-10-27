@@ -2,6 +2,7 @@ apt_packages:
   - awscli
   - emacs
   - peco
+  - sshpass
   - yarn
   - zsh
 
