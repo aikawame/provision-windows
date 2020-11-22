@@ -1,4 +1,5 @@
 Set-ExecutionPolicy RemoteSigned -Force
+Enable-PSRemoting -Force -SkipNetworkProfileCheck
 $ErrorActionPreference = 'Stop'
 
 Set-Location -Path $env:temp
