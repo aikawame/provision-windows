@@ -1,4 +1,5 @@
 $packages = @(
+'Microsoft.549981C3F5F10',
 'Microsoft.BingWeather',
 'Microsoft.DesktopAppInstaller',
 'Microsoft.GetHelp',
