@@ -11,6 +11,7 @@ $packages = @(
 'line',
 'microsoft-windows-terminal',
 'postman',
+'powertoys',
 'registrychangesview',
 'rufus',
 'slack',
