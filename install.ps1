@@ -4,9 +4,9 @@ $ErrorActionPreference = 'Stop'
 
 Set-Location -Path $env:temp
 $client = New-Object net.webclient
-$client.DownloadFile('https://github.com/aikawame/provision-windows/archive/master.zip', "$env:temp\provision-windows-master.zip")
-Expand-Archive -Path .\provision-windows-master.zip -DestinationPath .\ -Force
-Set-Location -Path .\provision-windows-master
+$client.DownloadFile('https://github.com/aikawame/provision-windows/archive/main.zip', "$env:temp\provision-windows-main.zip")
+Expand-Archive -Path .\provision-windows-main.zip -DestinationPath .\ -Force
+Set-Location -Path .\provision-windows-main
 Write-Host ''
 .\scripts\remove_appx_packages.ps1
 .\scripts\install_package_providers.ps1
@@ -33,5 +33,5 @@ Write-Host ''
 .\scripts\others.ps1
 Write-Host ''
 # Set-Location -Path $env:temp
-# Remove-Item .\provision-windows-master.zip
-# Remove-Item .\provision-windows-master -Recurse
+# Remove-Item .\provision-windows-main.zip
+# Remove-Item .\provision-windows-main -Recurse
