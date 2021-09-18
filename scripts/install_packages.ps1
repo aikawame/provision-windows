@@ -6,30 +6,6 @@ function Install-WSL2-Kernel-Update() {
   wsl --set-default-version 2
 }
 
-function Install-AtokPassport() {
-  Write-Host '-> AtokPassport'
-  $client = New-Object net.webclient
-  $client.DownloadFile('https://sevenzip.osdn.jp/howto/9.20/7z.exe', "$env:temp\7z.exe")
-  $client.DownloadFile('https://sevenzip.osdn.jp/howto/9.20/7z.dll', "$env:temp\7z.dll")
-  $client.DownloadFile('https://gate.justsystems.com/download/atok/ut/win/at31try4.exe', "$env:temp\at31try4.exe")
-  Invoke-Expression "$env:temp\7z x $env:temp\at31try4.exe -o$env:temp"
-  Invoke-Expression "$env:temp\at31try4\ATOK\SETUP.EXE /s"
-  Remove-Item $env:temp\7z.exe
-  Remove-Item $env:temp\7z.dll
-  Remove-Item $env:temp\at31try4.exe
-  # TODO: ウェイトを入れてtry-catchを咬ませつつ消す
-  # Remove-Item $env:temp\at31try4 -Force -Recurse
-}
-
-function Install-MagicUtilities() {
-  Write-Host '-> Magic Utilities'
-  $client = New-Object net.webclient
-  $client.DownloadFile('https://magicutilities.net/downloads/MagicUtilities-Setup-3.0.9.6-Win10.exe', "$env:temp\MagicUtilities-Setup-3.0.9.6-Win10.exe")
-  # TODO: サイレントインストールにする（コンポーネントの指定が必要）
-  Invoke-Expression "$env:temp\MagicUtilities-Setup-3.0.9.6-Win10.exe"
-  # Remove-Item $env:temp\MagicUtilities-Setup-3.0.9.6-Win10.exe
-}
-
 function Install-Ubuntu() {
   Write-Host '-> Ubuntu'
   choco install -y wsl-ubuntu-2004 --params /InstallRoot:true
@@ -38,7 +14,5 @@ function Install-Ubuntu() {
 
 Write-Host 'Installing packages:'
 Install-WSL2-Kernel-Update
-Install-AtokPassport
-Install-MagicUtilities
 Install-Ubuntu
 Write-Host ''

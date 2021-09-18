@@ -2,3 +2,41 @@
   win_chocolatey:
     name: "{{ chocolatey_packages }}"
     state: present
+
+- name: Magic Utilitiesのインストール状態を確認する
+  win_stat:
+    path: C:\Program Files (x86)\MagicUtilities
+  register: magicutilities_installed
+
+- name: Magic Utilitiesをダウンロードする
+  win_get_url:
+    url: https://dwn-bcdn.magicutilities.net/downloads/MagicUtilities-Setup-3.1.1.4-Win10.exe
+    dest: C:\Windows\Temp\MagicUtilities.exe
+  when: magicutilities_installed.stat.exists == false
+
+- name: Magic Utilitiesをインストールする
+  win_command: C:\Windows\Temp\MagicUtilities.exe
+  when: magicutilities_installed.stat.exists == false
+
+- name: ATOKのインストール状態を確認する
+  win_stat:
+    path: C:\Program Files (x86)\JustSystems\ATOK
+  register: atok_installed
+
+- name: ATOKをダウンロードする
+  win_get_url:
+    url: https://gate.justsystems.com/download/atok/ut/win/at32try1.exe
+    dest: C:\Windows\Temp\attry.exe
+  when: atok_installed.stat.exists == false
+
+- name: ATOKを展開する
+  win_unzip:
+    src: C:\Windows\Temp\attry.exe
+    dest: C:\Windows\Temp\attry
+    creates: C:\Windows\Temp\attry
+  when: atok_installed.stat.exists == false
+
+- name: ATOKをインストールする
+  win_command: C:\Windows\Temp\attry\ATOK\SETUP.EXE /s
+  when: atok_installed.stat.exists == false
+
