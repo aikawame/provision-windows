@@ -1,35 +1,3 @@
-$packages = @(
-'7zip.install',
-'docker-desktop',
-'firefox',
-'github-desktop',
-'GoogleChrome',
-'intellijidea-ultimate',
-'keyhac',
-'keypirinha',
-'Kindle',
-'line',
-'microsoft-windows-terminal',
-'postman',
-'powertoys',
-'registrychangesview',
-'rufus',
-'slack',
-'winmerge-jp'
-)
-
-function Install-Package-Retryable($package, $errorCount = 0) {
-  try {
-    Install-Package $package -Force -ProviderName 'ChocolateyGet'
-  } catch {
-    if ($errorCount -lt 2) {
-      Install-Package-Retryable $package ($errorCount + 1)
-    } else {
-      Write-Error $_.Exception
-    }
-  }
-}
-
 function Install-WSL2-Kernel-Update() {
   Write-Host '-> WSL2 Kernel Update'
   $client = New-Object net.webclient
@@ -62,14 +30,6 @@ function Install-MagicUtilities() {
   # Remove-Item $env:temp\MagicUtilities-Setup-3.0.9.6-Win10.exe
 }
 
-function Install-TablePlus() {
-  Write-Host '-> TablePlus'
-  $client = New-Object net.webclient
-  $client.DownloadFile('https://tableplus.com/release/windows/tableplus_latest', "$env:temp\TablePlusSetup.exe")
-  Invoke-Expression "$env:temp\TablePlusSetup.exe /SILENT"
-  # Remove-Item $env:temp\TablePlusSetup.exe
-}
-
 function Install-Ubuntu() {
   Write-Host '-> Ubuntu'
   choco install -y wsl-ubuntu-2004 --params /InstallRoot:true
@@ -78,12 +38,7 @@ function Install-Ubuntu() {
 
 Write-Host 'Installing packages:'
 Install-WSL2-Kernel-Update
-$packages | % {
-  Write-Host "-> $_"
-  Install-Package-Retryable $_
-}
 Install-AtokPassport
 Install-MagicUtilities
-Install-TablePlus
 Install-Ubuntu
 Write-Host ''

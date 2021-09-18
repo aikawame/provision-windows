@@ -1,0 +1,4 @@
+- name: Chocolateyのパッケージをインストールする
+  win_chocolatey:
+    name: "{{ chocolatey_packages }}"
+    state: present

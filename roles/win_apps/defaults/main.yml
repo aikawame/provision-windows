@@ -1,0 +1,16 @@
+chocolatey_packages:
+  - 7zip.install
+  - docker-desktop
+  - firefox
+  - GoogleChrome
+  - intellijidea-ultimate
+  - keyhac
+  - Kindle
+  - line
+  - microsoft-windows-terminal
+  - postman
+  - powertoys
+  - registrychangesview
+  - rufus
+  - slack
+  - tableplus
