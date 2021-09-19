@@ -8,7 +8,6 @@ $client.DownloadFile('https://github.com/aikawame/provision-windows/archive/main
 Expand-Archive -Path .\provision-windows-main.zip -DestinationPath .\ -Force
 Set-Location -Path .\provision-windows-main
 Write-Host ''
-.\scripts\install_package_providers.ps1
 .\scripts\install_packages.ps1
 Write-Host ''
 Write-Host 'Provisioning WSL environment:'
