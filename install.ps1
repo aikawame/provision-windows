@@ -8,7 +8,8 @@ $client.DownloadFile('https://github.com/aikawame/provision-windows/archive/main
 Expand-Archive -Path .\provision-windows-main.zip -DestinationPath .\ -Force
 Set-Location -Path .\provision-windows-main
 Write-Host ''
-.\scripts\install_packages.ps1
+Write-Host 'Install WSL:'
+wsl --install
 Write-Host ''
 Write-Host 'Provisioning WSL environment:'
 wsl DEBIAN_FRONTEND=noninteractive apt-get update
@@ -19,10 +20,14 @@ Write-Host ''
 wsl ansible-playbook -i win -u aikawame win.yml --ask-vault-pass
 wsl ansible-playbook -i wsl wsl.yml --ask-vault-pass
 Write-Host ''
-Write-Host 'Increase max_map_count for Elasticsearch container:'
-wsl -d docker-desktop echo 262144 ^> /proc/sys/vm/max_map_count
-Write-Host ''
-.\scripts\others.ps1
+Write-Host 'Applying other settings:'
+net accounts /maxpwage:unlimited
+New-Item -Type SymbolicLink C:\Users\aikawame\AppData\Roaming\Keyhac -Value "\\wsl$\Ubuntu-20.04\root\src\appdata-windows\Keyhac"
+New-Item -Type SymbolicLink C:\Users\aikawame\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json -Value "\\wsl$\Ubuntu-20.04\root\src\appdata-windows\Terminal\settings.json"
+Copy-Item -Path "\\wsl$\Ubuntu-20.04\root\src\appdata-windows\Powerman" -Recurse C:\Users\aikawame\AppData\Roaming\Powerman
+schtasks /create /TN BraviaPowerOn /XML ./misc/BraviaPowerOn.xml /ru MAPC01\aikawame /rp password
+Copy-Item -Path "\\wsl$\Ubuntu-20.04\root\src\appdata-windows\Fonts\Ricty-Bold.ttf" -Destination C:\Windows\Fonts\Ricty-Bold.ttf
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" /v "Ricty Bold (TrueType)" /t REG_SZ /d Ricty-Bold.ttf /f
 Write-Host ''
 # Set-Location -Path $env:temp
 # Remove-Item .\provision-windows-main.zip
