@@ -1,83 +1,68 @@
-- name: Setup GPG for Yarn
-  apt_key:
-    url: https://dl.yarnpkg.com/debian/pubkey.gpg
-    state: present
-
-- name: Setup Debian sources list
-  file:
-    path: /etc/apt/sources.list.d/yarn.list
-    owner: root
-    mode: 0644
-    state: touch
-
-- name: Setup Debian package
-  lineinfile:
-    dest: /etc/apt/sources.list.d/yarn.list
-    regexp: 'deb http://dl.yarnpkg.com/debian/ stable main'
-    line: 'deb http://dl.yarnpkg.com/debian/ stable main'
-    state: present
-
-- name: Update apt repositories
-  apt:
+- name: aptリポジトリーを更新する
+  ansible.builtin.apt:
     update_cache: yes
 
-- name: Update apt packages
-  apt:
+- name: aptパッケージを更新する
+  ansible.builtin.apt:
     upgrade: yes
 
-- name: Install apt packages
-  apt:
-    pkg: "{{ apt_packages }}"
+- name: aptパッケージをインストールする
+  ansible.builtin.apt:
+    pkg: "{{ item }}"
+  loop: "{{ apt_packages }}"
 
-- name: Install anyenv
-  git:
+- name: anyenvのインストール状態を確認する
+  ansible.builtin.stat:
+    path: ~/.anyenv/bin/anyenv
+  register: anyenv_installed
+
+- name: anyenvをインストールする
+  ansible.builtin.git:
     repo: https://github.com/anyenv/anyenv.git
     dest: ~/.anyenv
+  when: anyenv_installed.stat.exists == false
 
-- name: Check if anyenv manifest directory exists
-  stat:
+- name: anyenvの初期化状態を確認する
+  ansible.builtin.stat:
     path: ~/.config/anyenv/anyenv-install
-  register: anyenv_manifest_dir
+  register: anyenv_initialized
 
-- name: Initialize anyenv
-  shell: ~/.anyenv/bin/anyenv install --force-init
-  when: anyenv_manifest_dir.stat.exists == false
+- name: anyenvを初期化する
+  ansible.builtin.shell: ~/.anyenv/bin/anyenv install --force-init
+  when: anyenv_initialized.stat.exists == false
 
-- name: Check if **env directory exists
-  stat:
+- name: envsのインストール状態を確認する
+  ansible.builtin.stat:
     path: "~/.anyenv/envs/{{ item }}"
-  register: "anyenv_env_dirs"
+  register: anyenv_envs_installed
   loop: "{{ anyenv_envs }}"
 
-- name: Install **env
-  shell: "~/.anyenv/bin/anyenv install {{ item }}"
-  when: "anyenv_env_dirs.results[loop_index].stat.exists == false"
+- name: envsをインストールする
+  ansible.builtin.shell: "~/.anyenv/bin/anyenv install {{ item }}"
+  when: anyenv_envs_installed.results[loop_index].stat.exists == false
   loop: "{{ anyenv_envs }}"
   loop_control:
     index_var: loop_index
 
-- name: Copy bash profile
-  copy:
+- name: bashの一時プロファイルをコピーする
+  ansible.builtin.copy:
     src: roles/apps/files/.bash_profile
     dest: ~/.bash_profile
 
-- name: Create nodenv default packages
-  shell: "bash -lc 'echo yarn >> $NODENV_ROOT/default-packages'"
-
-- name: Check if nodenv versions exists
-  stat:
+- name: nodenvのバージョンを確認する
+  ansible.builtin.stat:
     path: "~/.anyenv/envs/nodenv/versions/{{ item }}"
-  register: "nodenv_version_dirs"
+  register: nodenv_versions_installed
   loop: "{{ nodenv_versions }}"
 
-- name: Add nodenv versions
-  shell: "bash -lc '~/.anyenv/envs/nodenv/bin/nodenv install {{ item }}'"
-  when: "nodenv_version_dirs.results[loop_index].stat.exists == false"
+- name: nodenvのバージョンをインストールする
+  ansible.builtin.shell: "bash -lc '~/.anyenv/envs/nodenv/bin/nodenv install {{ item }}'"
+  when: nodenv_versions_installed.results[loop_index].stat.exists == false
   loop: "{{ nodenv_versions }}"
   loop_control:
     index_var: loop_index
 
-- name: Remove bash profile
-  file:
+- name: bashの一時プロファイルを削除する
+  ansible.builtin.file:
     path: ~/.bash_profile
     state: absent

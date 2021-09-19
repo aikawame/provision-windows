@@ -1,13 +1,10 @@
 apt_packages:
   - awscli
   - peco
-  - sshpass
-  - yarn
   - zsh
 
 anyenv_envs:
   - nodenv
 
 nodenv_versions:
-  - 10.15.3
-  - 12.13.0
+  - 12.21.0

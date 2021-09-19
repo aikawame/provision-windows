@@ -1,70 +1,70 @@
-- name: Change default shell
-  user:
+- name: デフォルトシェルをZshに変更する
+  ansible.builtin.user:
     name: root
     shell: /usr/bin/zsh
 
-- name: Add hosts
-  blockinfile:
-    path: /etc/hosts
-    block: |
-      127.0.0.1 local-up.gifmagazine.net
-      127.0.0.1 local-converter.gifmagazine.net
-
-- name: Create sources directory
-  file:
+- name: ソースコードのディレクトリーを生成する
+  ansible.builtin.file:
     path: ~/src
     state: directory
 
-- name: Clone dotfiles
-  git:
+- name: dotfilesのインストール状態を確認する
+  ansible.builtin.stat:
+    path: ~/src/dotfiles
+  register: dotfiles_installed
+
+- name: dotfilesをダウンロードする
+  ansible.builtin.git:
     repo: https://github.com/aikawame/dotfiles.git
     dest: ~/src/dotfiles
+  when: dotfiles_installed.stat.exists == false
 
-- name: Install dotfiles
-  shell: ./install
+- name: dotfilesをインストールする
+  ansible.builtin.shell: ./install
   args:
     chdir: ~/src/dotfiles
+  when: dotfiles_installed.stat.exists == false
 
-- name: Copy AWS config
-  copy:
+- name: AWSの設定をコピーする
+  ansible.builtin.copy:
     src: roles/settings/files/aws_config
     dest: ~/.aws/config
 
-- name: Copy AWS credentials
-  template:
+- name: AWSの認証情報をコピーする
+  ansible.builtin.template:
     src: roles/settings/templates/aws_credentials.j2
     dest: ~/.aws/credentials
 
-- name: Copy SSH Config
-  template:
+- name: SSHの設定をコピーする
+  ansible.builtin.template:
     src: roles/settings/templates/ssh_config.j2
     dest: ~/.ssh/config
 
-- name: Copy RSA private key
-  template:
+- name: RSA秘密鍵をコピーする
+  ansible.builtin.template:
     src: roles/settings/templates/id_rsa.j2
     dest: ~/.ssh/id_rsa
     mode: 0600
 
-- name: Copy RSA private key (gm)
-  template:
+- name: RSA秘密鍵をコピーする (gm)
+  ansible.builtin.template:
     src: roles/settings/templates/id_rsa.gm.j2
     dest: ~/.ssh/id_rsa.gm
     mode: 0600
 
-- name: Copy RSA public key
-  template:
+- name: RSA公開鍵をコピーする
+  ansible.builtin.template:
     src: roles/settings/templates/id_rsa.pub.j2
     dest: ~/.ssh/id_rsa.pub
     mode: 0600
 
-- name: Clone Git repositories
-  git:
+- name: SSHディレクトリーの権限を変更する
+  ansible.builtin.file:
+    path: ~/src/dotfiles/.ssh
+    mode: 0700
+
+- name: ソースコードをクローンする
+  ansible.builtin.git:
     repo: "{{ item }}"
     dest: "~/src/{{ item | regex_replace('^.*/(.*)$', '\\1') }}"
   loop: "{{ git_repositories }}"
-
-- name: Change SSH directory permission
-  file:
-    path: ~/src/dotfiles/.ssh
-    mode: 0700
