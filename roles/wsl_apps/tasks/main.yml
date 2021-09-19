@@ -46,7 +46,7 @@
 
 - name: bashの一時プロファイルをコピーする
   ansible.builtin.copy:
-    src: roles/apps/files/.bash_profile
+    src: roles/wsl_apps/files/.bash_profile
     dest: ~/.bash_profile
 
 - name: nodenvのバージョンを確認する
