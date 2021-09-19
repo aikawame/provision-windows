@@ -1,3 +1,9 @@
+- name: 不要なAppxパッケージをアンインストールする
+  ansible.windows.win_package:
+    product_id: "{{ item }}"
+    state: absent
+  loop: "{{ appx_packages_unused }}"
+
 - name: Chocolateyのパッケージをインストールする
   chocolatey.chocolatey.win_chocolatey:
     name: "{{ chocolatey_packages }}"
