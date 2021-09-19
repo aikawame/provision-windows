@@ -1,4 +1,4 @@
 - hosts: local
   roles:
-    - apps
-    - settings
+    - wsl_apps
+    - wsl_settings
