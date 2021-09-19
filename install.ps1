@@ -10,13 +10,6 @@ Set-Location -Path .\provision-windows-main
 Write-Host ''
 .\scripts\install_package_providers.ps1
 .\scripts\install_packages.ps1
-.\scripts\update_reg_acls.ps1
-Write-Host ''
-Write-Host 'Applying registry:'
-Reg import .\registrations\settings.reg
-Reg import .\registrations\control_panel.reg
-Reg import .\registrations\sounds.reg
-Reg import .\registrations\others.reg
 Write-Host ''
 Write-Host 'Provisioning WSL environment:'
 wsl DEBIAN_FRONTEND=noninteractive apt-get update

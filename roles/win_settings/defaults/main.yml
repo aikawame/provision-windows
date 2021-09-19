@@ -1,0 +1,5 @@
+reg_files:
+  - settings.reg
+  - control_panel.reg
+  - sounds.reg
+  - others.reg
