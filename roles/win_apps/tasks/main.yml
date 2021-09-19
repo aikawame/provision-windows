@@ -6,8 +6,9 @@
 
 - name: Chocolateyのパッケージをインストールする
   chocolatey.chocolatey.win_chocolatey:
-    name: "{{ chocolatey_packages }}"
+    name: "{{ item }}"
     state: present
+  loop: "{{ chocolatey_packages }}"
 
 - name: Magic Utilitiesのインストール状態を確認する
   ansible.windows.win_stat:
