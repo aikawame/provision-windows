@@ -1,2 +1,2 @@
-[local]
+[wsl]
 localhost ansible_connection=local

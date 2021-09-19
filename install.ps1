@@ -24,8 +24,8 @@ wsl DEBIAN_FRONTEND=noninteractive apt-get install -y language-pack-ja ansible
 wsl update-locale LANG=ja_JP.UTF8
 wsl DEBIAN_FRONTEND=noninteractive dpkg-reconfigure tzdata
 Write-Host ''
-wsl ansible-playbook -i windows -u aikawame windows.yml --ask-vault-pass
-wsl ansible-playbook -i local local.yml --ask-vault-pass
+wsl ansible-playbook -i win -u aikawame win.yml --ask-vault-pass
+wsl ansible-playbook -i wsl wsl.yml --ask-vault-pass
 Write-Host ''
 Write-Host 'Increase max_map_count for Elasticsearch container:'
 wsl -d docker-desktop echo 262144 ^> /proc/sys/vm/max_map_count
