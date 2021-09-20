@@ -8,16 +8,19 @@ $client.DownloadFile('https://github.com/aikawame/provision-windows/archive/main
 Expand-Archive -Path .\provision-windows-main.zip -DestinationPath .\ -Force
 Set-Location -Path .\provision-windows-main
 Write-Host ''
-Write-Host 'Install WSL:'
+Write-Host 'Installing WSL:'
 wsl --install
 Write-Host ''
-Write-Host 'Provisioning WSL environment:'
+Write-Host 'Initializing WSL environment:'
 wsl DEBIAN_FRONTEND=noninteractive apt-get update
 wsl DEBIAN_FRONTEND=noninteractive apt-get install -y language-pack-ja ansible
 wsl update-locale LANG=ja_JP.UTF8
 wsl DEBIAN_FRONTEND=noninteractive dpkg-reconfigure tzdata
 Write-Host ''
+Write-Host 'Provisioning Windows environment:'
 wsl ansible-playbook -i win -u aikawame win.yml --ask-vault-pass
+Write-Host ''
+Write-Host 'Provisioning WSL environment:'
 wsl ansible-playbook -i wsl wsl.yml --ask-vault-pass
 Write-Host ''
 Write-Host 'Applying other settings:'
