@@ -1,0 +1,15 @@
+- hosts: win
+  vars:
+    ansible_user: aikawame
+    ansible_password: "{{ os_credentials.default.password }}"
+    ansible_port: 5985
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+  roles:
+    - win_apps
+    - win_settings
+
+- hosts: wsl
+  roles:
+    - wsl_apps
+    - wsl_settings

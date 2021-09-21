@@ -1,9 +1,0 @@
-[win]
-192.168.0.5
-
-[win:vars]
-ansible_user=aikawame
-ansible_password={{ os_credentials.default.password }}
-ansible_port=5985
-ansible_connection=winrm
-ansible_winrm_transport=ntlm

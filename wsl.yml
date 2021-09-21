@@ -1,4 +1,0 @@
-- hosts: wsl
-  roles:
-    - wsl_apps
-    - wsl_settings

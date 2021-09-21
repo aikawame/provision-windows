@@ -1,4 +1,0 @@
-- hosts: win
-  roles:
-    - win_apps
-    - win_settings

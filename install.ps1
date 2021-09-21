@@ -20,12 +20,8 @@ Expand-Archive -Path .\provision-windows-main.zip -DestinationPath .\ -Force
 Set-Location -Path .\provision-windows-main
 
 Write-Host ''
-Write-Host 'Windowsの構成管理を適用しています...'
-wsl ansible-playbook -i win win.yml --ask-vault-pass
-
-Write-Host ''
-Write-Host 'WSLの構成管理を適用しています...'
-wsl ansible-playbook -i wsl wsl.yml --ask-vault-pass
+Write-Host 'AnsibleのPlaybookを実行しています...'
+wsl ansible-playbook playbook.yml -i hosts --ask-vault-pass
 
 Write-Host ''
 Write-Host 'その他の設定を適用しています...'
