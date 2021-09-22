@@ -43,4 +43,5 @@
 
 - name: ATOKをインストールする
   ansible.windows.win_command: C:\Windows\Temp\at32try1\ATOK\SETUP.EXE /s
+  ignore_errors: yes
   when: atok_installed.stat.exists == false
