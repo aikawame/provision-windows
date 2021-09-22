@@ -1,27 +1,19 @@
 appx_packages_unused:
   - Microsoft.549981C3F5F10
+  - Microsoft.BingNews
   - Microsoft.BingWeather
-  - Microsoft.DesktopAppInstaller
+# - Microsoft.DesktopAppInstaller # Win11で消そうとするとエラーになる
+  - Microsoft.GamingApp
   - Microsoft.GetHelp
   - Microsoft.Getstarted
-  - Microsoft.Messaging
-  - Microsoft.Microsoft3DViewer
   - Microsoft.MicrosoftOfficeHub
   - Microsoft.MicrosoftSolitaireCollection
   - Microsoft.MicrosoftStickyNotes
-  - Microsoft.MixedReality.Portal
-  - Microsoft.MSPaint
-  - Microsoft.Office.OneNote
-  - Microsoft.OneConnect
+  - Microsoft.Paint
   - Microsoft.People
-  - Microsoft.Print3D
+# - Microsoft.PowerAutomateDesktop
 # - Microsoft.ScreenSketch
-  - Microsoft.SkypeApp
-  - Microsoft.Xbox.TCUI
-  - Microsoft.XboxApp
-  - Microsoft.XboxGameOverlay
-  - Microsoft.XboxGamingOverlay
-  - Microsoft.XboxSpeechToTextOverlay
+  - Microsoft.Todos
 # - Microsoft.Windows.Photos
   - Microsoft.WindowsAlarms
 # - Microsoft.WindowsCalculator
@@ -29,10 +21,15 @@ appx_packages_unused:
   - microsoft.windowscommunicationsapps
   - Microsoft.WindowsFeedbackHub
   - Microsoft.WindowsMaps
-  - Microsoft.WindowsSoundRecorder
+# - Microsoft.WindowsSoundRecorder
+  - Microsoft.Xbox.TCUI
+  - Microsoft.XboxGameOverlay
+  - Microsoft.XboxGamingOverlay
+  - Microsoft.XboxSpeechToTextOverlay
 # - Microsoft.YourPhone
   - Microsoft.ZuneMusic
   - Microsoft.ZuneVideo
+  - MicrosoftTeams
 
 chocolatey_packages:
   - 7zip.install
