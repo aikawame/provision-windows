@@ -38,12 +38,9 @@
   when: atok_installed.stat.exists == false
 
 - name: ATOKを展開する
-  community.windows.win_unzip:
-    src: C:\Windows\Temp\attry.exe
-    dest: C:\Windows\Temp\attry
-    creates: C:\Windows\Temp\attry
+  ansible.windows.win_command: '"C:\Program Files\7-zip\7z" x C:\Windows\Temp\attry.exe -oC:\Windows\Temp'
   when: atok_installed.stat.exists == false
 
 - name: ATOKをインストールする
-  ansible.windows.win_command: C:\Windows\Temp\attry\ATOK\SETUP.EXE /s
+  ansible.windows.win_command: C:\Windows\Temp\at32try1\ATOK\SETUP.EXE /s
   when: atok_installed.stat.exists == false
