@@ -10,20 +10,21 @@
     state: present
   loop: "{{ chocolatey_packages }}"
 
-- name: Magic Utilitiesのインストール状態を確認する
-  ansible.windows.win_stat:
-    path: C:\Program Files (x86)\MagicUtilities
-  register: magicutilities_installed
-
-- name: Magic Utilitiesをダウンロードする
-  ansible.windows.win_get_url:
-    url: https://dwn-bcdn.magicutilities.net/downloads/MagicUtilities-Setup-3.1.1.4-Win10.exe
-    dest: C:\Windows\Temp\MagicUtilities.exe
-  when: magicutilities_installed.stat.exists == false
-
-- name: Magic Utilitiesをインストールする
-  ansible.windows.win_command: C:\Windows\Temp\MagicUtilities.exe
-  when: magicutilities_installed.stat.exists == false
+# サイレントインストールの方法が不明
+#- name: Magic Utilitiesのインストール状態を確認する
+#  ansible.windows.win_stat:
+#    path: C:\Program Files (x86)\MagicUtilities
+#  register: magicutilities_installed
+#
+#- name: Magic Utilitiesをダウンロードする
+#  ansible.windows.win_get_url:
+#    url: https://dwn-bcdn.magicutilities.net/downloads/MagicUtilities-Setup-3.1.1.4-Win10.exe
+#    dest: C:\Windows\Temp\MagicUtilities.exe
+#  when: magicutilities_installed.stat.exists == false
+#
+#- name: Magic Utilitiesをインストールする
+#  ansible.windows.win_command: C:\Windows\Temp\MagicUtilities.exe
+#  when: magicutilities_installed.stat.exists == false
 
 - name: ATOKのインストール状態を確認する
   ansible.windows.win_stat:
