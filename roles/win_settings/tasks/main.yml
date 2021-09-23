@@ -18,3 +18,31 @@
   ansible.windows.win_file:
     path: C:\Windows\Temp\ansible_win_settings_reg_files
     state: absent
+
+- name: パスワードを無期限にする
+  ansible.windows.win_user:
+    name: aikawame
+    password_never_expires: yes
+
+- name: Rictyフォントをコピーする
+  ansible.windows.win_copy:
+    src: /root/src/appdata-windows/Fonts/Ricty-Bold.ttf
+    dest: C:\Windows\Fonts\Ricty-Bold.ttf
+
+- name: Rictyフォントを有効化する
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts
+    name: Ricty Bold (TrueType)
+    data: Ricty-Bold.ttf
+
+- name: Keyhacの設定を反映する
+  ansible.windows.win_command: >
+    cmd /k mklink /D
+    C:\Users\aikawame\AppData\Roaming\Keyhac
+    \\wsl$\Ubuntu-20.04\root\src\appdata-windows\Keyhac
+
+- name: Terminalの設定を反映する
+  ansible.windows.win_command: >
+    cmd /k mklink /D
+    C:\Users\aikawame\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
+    \\wsl$\Ubuntu-20.04\root\src\appdata-windows\Terminal\settings.json

@@ -63,6 +63,17 @@
     path: ~/src/dotfiles/.ssh
     mode: 0700
 
+- name: アプリケーションデータのインストール状態を確認する
+  ansible.builtin.stat:
+    path: ~/src/appdata-windows
+  register: appdata_installed
+
+- name: アプリケーションデータをダウンロードする
+  ansible.builtin.git:
+    repo: https://github.com/aikawame/appdata-windows.git
+    dest: ~/src/appdata-windows
+  when: appdata_installed.stat.exists == false
+
 - name: ソースコードをクローンする
   ansible.builtin.git:
     repo: "{{ item }}"

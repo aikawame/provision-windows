@@ -1,3 +1,8 @@
+- hosts: wsl
+  roles:
+    - wsl_apps
+    - wsl_settings
+
 - hosts: win
   vars:
     ansible_user: aikawame
@@ -8,8 +13,3 @@
   roles:
     - win_apps
     - win_settings
-
-- hosts: wsl
-  roles:
-    - wsl_apps
-    - wsl_settings
