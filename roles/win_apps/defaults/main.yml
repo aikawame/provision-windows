@@ -31,6 +31,20 @@ appx_packages_unused:
   - Microsoft.ZuneVideo
   - MicrosoftTeams
 
+optional-features:
+  - Containers-DisposableClientVM
+  - Microsoft-Hyper-V-All
+
+optional-features_unused:
+  - MediaPlayback
+  - MicrosoftWindowsPowerShellV2Root
+  - MicrosoftWindowsPowerShellV2
+  - NetFx4-AdvSrvs
+  - Printing-Foundation-Features
+  - Printing-XPSServices-Features
+  - WindowsMediaPlayer
+  - WorkFolders-Client
+
 chocolatey_packages:
   - 7zip.install
   - docker-desktop
