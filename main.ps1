@@ -24,9 +24,3 @@ Set-Location -Path .\provision-windows
 Write-Host ''
 Write-Host 'AnsibleのPlaybookを実行しています...'
 wsl ansible-playbook playbook.yml -i hosts --ask-vault-pass
-
-Write-Host ''
-Write-Host '作業ファイルを削除しています...'
-Set-Location -Path C:\Windows\Temp
-Remove-Item .\provision-windows.zip
-Remove-Item .\provision-windows -Recurse
