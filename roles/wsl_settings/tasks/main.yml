@@ -70,7 +70,7 @@
 
 - name: アプリケーションデータをダウンロードする
   ansible.builtin.git:
-    repo: https://github.com/aikawame/appdata-windows.git
+    repo: git@github.com:aikawame/appdata-windows
     dest: ~/src/appdata-windows
   when: appdata_installed.stat.exists == false
 
