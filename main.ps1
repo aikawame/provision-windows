@@ -13,17 +13,19 @@ wsl pip install ansible pywinrm
 
 Write-Host ''
 Write-Host 'AnsibleのPlaybookをダウンロードしています...'
-Set-Location -Path $env:temp
+Set-Location -Path C:\Windows\Temp
 $client = New-Object net.webclient
-$client.DownloadFile('https://github.com/aikawame/provision-windows/archive/main.zip', "$env:temp\provision-windows-main.zip")
-Expand-Archive -Path .\provision-windows-main.zip -DestinationPath .\ -Force
-Set-Location -Path .\provision-windows-main
+$source = 'https://github.com/aikawame/provision-windows/archive/main.zip'
+$client.DownloadFile($source, 'C:\Windows\Temp\provision-windows.zip')
+Expand-Archive -Path .\provision-windows.zip -DestinationPath .\ -Force
+Set-Location -Path .\provision-windows
 
 Write-Host ''
 Write-Host 'AnsibleのPlaybookを実行しています...'
 wsl ansible-playbook playbook.yml -i hosts --ask-vault-pass
 
 Write-Host ''
-# Set-Location -Path $env:temp
-# Remove-Item .\provision-windows-main.zip
-# Remove-Item .\provision-windows-main -Recurse
+Write-Host '作業ファイルを削除しています...'
+Set-Location -Path C:\Windows\Temp
+Remove-Item .\provision-windows.zip
+Remove-Item .\provision-windows -Recurse

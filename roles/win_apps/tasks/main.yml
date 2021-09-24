@@ -31,11 +31,12 @@
 - name: Magic Utilitiesをダウンロードする
   ansible.windows.win_get_url:
     url: https://dwn-bcdn.magicutilities.net/downloads/MagicUtilities-Setup-3.1.1.4-Win10.exe
-    dest: C:\Windows\Temp\MagicUtilities.exe
+    dest: C:\Windows\Temp\provision-windows\MagicUtilities.exe
   when: magicutilities_installed.stat.exists == false
 
 - name: Magic Utilitiesをインストールする
-  ansible.windows.win_command: C:\Windows\Temp\MagicUtilities.exe /SILENT
+  ansible.windows.win_command: >
+    C:\Windows\Temp\provision-windows\MagicUtilities.exe /SILENT
   when: magicutilities_installed.stat.exists == false
 
 - name: ATOKのインストール状態を確認する
@@ -46,14 +47,18 @@
 - name: ATOKをダウンロードする
   ansible.windows.win_get_url:
     url: https://gate.justsystems.com/download/atok/ut/win/at32try1.exe
-    dest: C:\Windows\Temp\attry.exe
+    dest: C:\Windows\Temp\provision-windows\attry.exe
   when: atok_installed.stat.exists == false
 
 - name: ATOKを展開する
-  ansible.windows.win_command: '"C:\Program Files\7-zip\7z" x C:\Windows\Temp\attry.exe -oC:\Windows\Temp'
+  ansible.windows.win_command: >
+    '"C:\Program Files\7-zip\7z"
+    x C:\Windows\Temp\provision-windows\attry.exe
+    -oC:\Windows\Temp\provision-windows'
   when: atok_installed.stat.exists == false
 
 - name: ATOKをインストールする
-  ansible.windows.win_command: C:\Windows\Temp\at32try1\ATOK\SETUP.EXE /s
+  ansible.windows.win_command: >
+    C:\Windows\Temp\provision-windows\at32try1\ATOK\SETUP.EXE /s
   ignore_errors: yes
   when: atok_installed.stat.exists == false

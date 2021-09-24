@@ -1,23 +1,7 @@
-- name: レジストリの作業ディレクトリーを生成する
-  ansible.windows.win_file:
-    path: C:\Windows\Temp\ansible_win_settings_reg_files
-    state: directory
-
-- name: レジストリファイルをコピーする
-  ansible.windows.win_copy:
-    src: "roles/win_settings/files/{{ item }}"
-    dest: "C:\\Windows\\Temp\\ansible_win_settings_reg_files\\{{ item }}"
-  loop: "{{ reg_files }}"
-
 - name: レジストリを適用する
   community.windows.win_regmerge:
-    path: "C:\\Windows\\Temp\\ansible_win_settings_reg_files\\{{ item }}"
+    path: "C:\\Windows\\Temp\\provision-windows\\roles\\win_settings\\files\\{{ item }}"
   loop: "{{ reg_files }}"
-
-- name: レジストリの作業ディレクトリーを削除する
-  ansible.windows.win_file:
-    path: C:\Windows\Temp\ansible_win_settings_reg_files
-    state: absent
 
 - name: パスワードを無期限にする
   ansible.windows.win_user:
