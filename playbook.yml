@@ -1,4 +1,6 @@
 - hosts: wsl
+  vars:
+    ansible_connection: local
   roles:
     - wsl_apps
     - wsl_settings
