@@ -7,8 +7,8 @@ wsl DEBIAN_FRONTEND=noninteractive dpkg-reconfigure tzdata
 
 Write-Host ''
 Write-Host 'Ansibleをインストールしています...'
-wsl apt update
-wsl apt install -y python3-pip
+wsl apt-get update
+wsl apt-get install -y python3-pip
 wsl pip install ansible pywinrm
 
 Write-Host ''
