@@ -10,10 +10,11 @@ wsl --install
 
 Write-Host ''
 Write-Host 'メイン処理を準備しています...'
-$path = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce'
-$name = 'Restart-And-RunOnce'
+$path = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce'
+$name = 'Provisioning'
+$powershell = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell'
 $script = 'https://raw.githubusercontent.com/aikawame/provision-windows/main/main.ps1'
-$value = "powershell -ExecutionPolicy Bypass ((New-Object Net.WebClient).DownloadString($script) | iex)"
+$value = "$powershell -ExecutionPolicy Bypass ((New-Object Net.WebClient).DownloadString($script) | iex)"
 Set-ItemProperty -path $path -name $name -value $value
 
 Write-Host ''
