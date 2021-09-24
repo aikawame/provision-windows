@@ -31,11 +31,11 @@ appx_packages_unused:
   - Microsoft.ZuneVideo
   - MicrosoftTeams
 
-optional-features:
+optional_features:
   - Containers-DisposableClientVM
   - Microsoft-Hyper-V-All
 
-optional-features_unused:
+optional_features_unused:
   - MediaPlayback
   - MicrosoftWindowsPowerShellV2Root
   - MicrosoftWindowsPowerShellV2
