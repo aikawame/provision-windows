@@ -22,7 +22,6 @@
     state: present
   loop: "{{ chocolatey_packages }}"
 
- サイレントインストールの方法が不明
 - name: Magic Utilitiesのインストール状態を確認する
   ansible.windows.win_stat:
     path: C:\Program Files (x86)\MagicUtilities
