@@ -18,6 +18,7 @@ $client = New-Object net.webclient
 $source = 'https://github.com/aikawame/provision-windows/archive/main.zip'
 $client.DownloadFile($source, 'C:\Windows\Temp\provision-windows.zip')
 Expand-Archive -Path .\provision-windows.zip -DestinationPath .\ -Force
+Rename-Item .\provision-windows-main -NewName .\provision-windows
 Set-Location -Path .\provision-windows
 
 Write-Host ''
