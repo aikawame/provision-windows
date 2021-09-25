@@ -15,3 +15,4 @@
   roles:
     - win_apps
     - win_settings
+    - win_terminations

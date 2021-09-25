@@ -1,0 +1,4 @@
+- name: 作業ディレクトリーを削除する
+  ansible.windows.win_file:
+    path: C:\Windows\Temp\provision-windows
+    state: absent
