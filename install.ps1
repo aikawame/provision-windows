@@ -1,3 +1,5 @@
+chcp 65001
+
 Write-Host ''
 Write-Host 'PowerShellを設定しています...'
 Set-ExecutionPolicy RemoteSigned -Force

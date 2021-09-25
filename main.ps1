@@ -1,3 +1,5 @@
+chcp 65001
+
 Write-Host ''
 Write-Host 'WSLを初期化しています...'
 wsl DEBIAN_FRONTEND=noninteractive apt-get update
