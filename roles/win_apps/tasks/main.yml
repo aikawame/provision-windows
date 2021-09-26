@@ -51,9 +51,9 @@
 
 - name: ATOKを展開する
   ansible.windows.win_command: >
-    '"C:\Program Files\7-zip\7z"
+    "C:\Program Files\7-zip\7z"
     x C:\Windows\Temp\provision-windows\attry.exe
-    -oC:\Windows\Temp\provision-windows'
+    -oC:\Windows\Temp\provision-windows
   when: atok_installed.stat.exists == false
 
 - name: ATOKをインストールする
