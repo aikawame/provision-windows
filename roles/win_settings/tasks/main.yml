@@ -27,6 +27,6 @@
 
 - name: Terminalの設定を反映する
   ansible.windows.win_command: >
-    cmd /k mklink /D
+    cmd /k mklink
     C:\Users\aikawame\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
     \\wsl$\Ubuntu-20.04\root\src\appdata-windows\Terminal\settings.json
