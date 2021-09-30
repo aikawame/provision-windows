@@ -46,3 +46,4 @@
     src: powershell C:\Users\aikawame\AppData\Roaming\Powerman\Sleep.ps1
     dest: C:\Users\aikawame\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Sleep.lnk
     icon: '%SystemRoot%\System32\SHELL32.dll,-26'
+    windowstyle: minimized
