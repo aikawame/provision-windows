@@ -8,6 +8,11 @@
     name: aikawame
     password_never_expires: yes
 
+- name: Defenderのスキャン対象からソースコードを除外する
+  ansible.windows.win_powershell:
+    script: >
+      Add-MpPreference -ExclusionProcess '\\wsl.localhost\Ubuntu\root'
+
 - name: Rictyフォントをコピーする
   ansible.windows.win_copy:
     src: /root/src/appdata-windows/Fonts/Ricty-Bold.ttf
