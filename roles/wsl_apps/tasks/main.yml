@@ -1,3 +1,7 @@
+- name: GitのPPAを追加する
+  ansible.builtin.apt_repository:
+    repo: ppa:git-core/ppa
+
 - name: aptリポジトリーを更新する
   ansible.builtin.apt:
     update_cache: yes
