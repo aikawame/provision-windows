@@ -44,7 +44,7 @@
 - name: スリープスクリプトをコピーする
   ansible.windows.win_copy:
     src: /root/src/appdata-windows/Powerman
-    dest: C:\Users\aikawame\AppData\Roaming\Powerman
+    dest: C:\Users\aikawame\AppData\Roaming
 
 - name: スリープスクリプトのショートカットを追加する
   community.windows.win_shortcut:
