@@ -46,11 +46,13 @@ optional_features_unused:
   - WorkFolders-Client
 
 chocolatey_packages:
+  - 1password
   - 7zip.install
   - docker-desktop
   - firefox
   - GoogleChrome
   - intellijidea-ultimate
+  - jetbrains-rider
   - keyhac
   - Kindle
   - line
