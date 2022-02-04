@@ -51,8 +51,7 @@ chocolatey_packages:
   - docker-desktop
   - firefox
   - GoogleChrome
-  - intellijidea-ultimate
-  - jetbrains-rider
+  - jetbrainstoolbox
   - keyhac
   - Kindle
   - line
