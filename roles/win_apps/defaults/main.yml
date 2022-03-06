@@ -50,7 +50,6 @@ chocolatey_packages:
   - 7zip.install
   - docker-desktop
   - firefox
-  - GoogleChrome
   - jetbrainstoolbox
   - keyhac
   - Kindle
