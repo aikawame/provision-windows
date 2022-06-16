@@ -57,7 +57,5 @@ chocolatey_packages:
   - microsoft-windows-terminal
   - postman
   - powertoys
-  - registrychangesview
-  - rufus
   - slack
   - tableplus
