@@ -54,7 +54,6 @@ chocolatey_packages:
   - keyhac
   - Kindle
   - line
-  - microsoft-windows-terminal
   - postman
   - powertoys
   - slack
