@@ -47,7 +47,6 @@ optional_features_unused:
 
 chocolatey_packages:
   - 1password
-  - 7zip.install
   - docker-desktop
   - firefox
   - jetbrainstoolbox
